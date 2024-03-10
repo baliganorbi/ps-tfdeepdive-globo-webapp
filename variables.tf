@@ -23,9 +23,9 @@ variable "billing_code" {
 # Application variables
 
 variable "ip_range" {
-  type = string
+  type        = string
   description = "CIDR range allowed for inbound communication in the SGs"
-  default = "0.0.0.0/0"
+  default     = "0.0.0.0/0"
 }
 
 variable "instance_type" {
