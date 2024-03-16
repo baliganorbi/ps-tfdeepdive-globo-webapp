@@ -18,7 +18,7 @@ locals {
   }
 
   name_prefix = "${var.prefix}-${var.environment}"
-  
+
   public_subnets = data.tfe_outputs.net.nonsensitive_values.public_subnets
   vpc_id         = data.tfe_outputs.net.nonsensitive_values.vpc_id
 }
