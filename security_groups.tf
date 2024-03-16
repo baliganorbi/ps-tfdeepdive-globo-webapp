@@ -4,13 +4,21 @@
 
 resource "aws_security_group" "webapp_http_inbound_sg" {
   name        = "${local.name_prefix}-http-inbound"
-  description = "Allow HTTP from Anywhere"
+  description = "Allow HTTP from specific IP range"
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = [var.ip_range]
+  }
+
+  # allow HTTP from this Security Group
+  ingress {
+    from_port = 80
+    to_port   = 80
+    protocol  = "tcp"
+    self      = true
   }
 
   egress {
@@ -20,7 +28,7 @@ resource "aws_security_group" "webapp_http_inbound_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  vpc_id = var.vpc_id
+  vpc_id = local.vpc_id
 
   tags = local.common_tags
 }
@@ -36,7 +44,7 @@ resource "aws_security_group" "webapp_ssh_inbound_sg" {
     cidr_blocks = [var.ip_range]
   }
 
-  vpc_id = var.vpc_id
+  vpc_id = local.vpc_id
 
   tags = local.common_tags
 }
@@ -52,7 +60,7 @@ resource "aws_security_group" "webapp_outbound_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  vpc_id = var.vpc_id
+  vpc_id = local.vpc_id
 
   tags = local.common_tags
 }
