@@ -45,7 +45,7 @@ resource "aws_instance" "main" {
 
   key_name = module.ssh_keys.key_pair_name
 
-  iam_instance_profile = aws_iam_instance_profile.web_app_dev_api_key_access
+  iam_instance_profile = aws_iam_instance_profile.web_app_dev_api_key_access.name
 
   tags = merge(local.common_tags, {
     "Name" = "${local.name_prefix}-webapp-${count.index}"
