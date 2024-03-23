@@ -8,3 +8,8 @@ aws secretsmanager get-secret-value --secret-id "${secret_id}" --region us-east-
 aws ssm get-parameter --name "${host_list_ssm_name}" --region us-east-1 --query Parameter.Value --output text > /var/ansible_playbooks/host_list.txt
 aws ssm get-parameter --name "${site_name_ssm_name}" --region us-east-1 --query Parameter.Value --output text > /var/ansible_playbooks/site_name.txt
 ansible-playbook /var/ansible_playbooks/playbook.yml -i /var/ansible_playbooks/hosts
+echo "Provisioning finished"
+echo "${host_list_ssm_name}:"
+cat /var/ansible_playbooks/host_list.txt
+echo "${site_name_ssm_name}:"
+cat /var/ansible_playbooks/site_name.txt
