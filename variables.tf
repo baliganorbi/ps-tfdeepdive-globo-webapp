@@ -50,3 +50,9 @@ variable "tfe_workspace" {
   type        = string
   description = "(Required) Name of the networking namespace to get information."
 }
+
+# Ansible playbook repository
+variable "playbook_repository" {
+  type        = string
+  description = "(Required) URL of the Ansible playbook repository."
+}
